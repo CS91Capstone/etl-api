@@ -1,2 +1,3 @@
-# etl-api
-Lambda function used for ETL API
+# ETL API
+
+Lambda code used with API Gateway
