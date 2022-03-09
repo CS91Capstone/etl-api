@@ -15,7 +15,7 @@ MYSQL_PASS = os.environ['MYSQL_PASS']
 
 def query_mysql() -> dict:
     result: dict = None
-    destination_table: str = "Campsites"
+    destination_table: str = "Campsites_Access"
     
     conn = pymysql.connect(
         host=MYSQL_HOST,
@@ -27,7 +27,7 @@ def query_mysql() -> dict:
     )
     try:
         with conn.cursor() as cursor:
-            cursor.execute(f"SELECT campsite_name FROM {destination_table} WHERE campsite_reservable = 1")
+            cursor.execute(f"SELECT campsite_id FROM {destination_table} WHERE campsite_accessible = 1")
             result = cursor.fetchall()
 
     except Exception as e:
@@ -43,7 +43,7 @@ def transform(records: list) -> list:
     transform_data: list = []
     for record in records:
         data: dict = {}
-        data['campsite_name'] = record[0]
+        data['campsite_id'] = record[0]
         transform_data.append(data)
     return transform_data
 
