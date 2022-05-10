@@ -1,0 +1,414 @@
+openapi: 3.0.3
+info:
+  version: 1.0.0
+  title: Data Data Data
+  description: This API can be used by users to get campsite data from our database.
+paths:
+  /campsites:
+    get:
+      summary: Fetch a list of campsites
+      description: |
+        Returns a list of campsites.
+      operationId: getCampsites
+      tags:
+        - campsites
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campsite_id:
+                    type: string
+                    description: The ID of the campsite.
+                    example: 10001367
+                  facility_id:
+                    type: string
+                    description: The ID of the facility.
+                    example: 233119
+                  campsite_name:
+                    type: string
+                    description: The name of the campsite.
+                    example: Site# 05
+                  campsite_type:
+                    type: string
+                    description: The type of the campsite.
+                    example: STANDARD NONELECTRIC
+                  type_of_use:
+                    type: string
+                    description: The type of use for the campsite.
+                    example: Overnight
+                  campsite_accessible:
+                    type: string
+                    description: Is the campsite accessible.
+                    example: 0
+                  campsite_reservable:
+                    type: string
+                    description: Is the campsite reservable.
+                    example: 1
+                  campsite_longitude:
+                    type: string
+                    description: The campsites longitude coords.
+                    example: -92.758542
+                  campsite_latitude:
+                    type: string
+                    description: The campsites latitude coords.
+                    example: 35.986694
+
+  '/campsites/accessibility':
+    get:
+      summary: Fetch a campsites accessibility.
+      parameters:
+        - in: query
+          name: campsite_id
+          schema:
+            type: integer
+          required: true
+          description: The specific campsite you are looking for
+      description: >
+        Returns if a specific campsite is accessible.
+      operationId: getAccessibility
+      tags:
+        - campsites
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campsite_accessible:
+                    type: string
+                    description: Campsites accessibility.
+                    example: 0
+  '/campsites/coordinates':
+    get:
+      summary: Fetch a campsites coordinates.
+      parameters:
+        - in: query
+          name: campsite_id
+          schema:
+            type: integer
+          required: true
+          description: The specific campsite you are looking for
+      description: >
+        Returns the coordinates of a campsite
+      operationId: getCoordinates
+      tags:
+        - campsites
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campsite_longitude:
+                    type: string
+                    description: Campsites longitude.
+                    example: 91.534226
+                  campsite_latitude:
+                    type: string
+                    description: Campsite latitude.
+                    example: 41.722275
+  '/campsites/facility_id':
+    get:
+      summary: Fetch a campsites facility_id.
+      parameters:
+        - in: query
+          name: campsite_id
+          schema:
+            type: integer
+          required: true
+          description: The specific campsite you are looking for
+      description: >
+        Returns the facility ID of a campsite
+      operationId: getFacilityId
+      tags:
+        - campsites
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  facility_id:
+                    type: string
+                    description: Campsites facility ID.
+                    example: 272094
+  '/campsites/location':
+    get:
+      summary: Fetch a campsites location.
+      parameters:
+        - in: query
+          name: campsite_id
+          schema:
+            type: integer
+          required: true
+          description: The specific campsite you are looking for
+      description: >
+        Returns the location of a campsite
+      operationId: getLocation
+      tags:
+        - campsites
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campsite_country:
+                    type: string
+                    description: Campsites country.
+                    example: United States
+                  campsite_state:
+                    type: string
+                    description: Campsites state.
+                    example: Iowa
+                  campsite_city:
+                    type: string
+                    description: Campsites city.
+                    example: Madrid
+  '/campsites/name ':
+    get:
+      summary: Fetch a campsites name.
+      parameters:
+        - in: query
+          name: campsite_id
+          schema:
+            type: integer
+          required: true
+          description: The specific campsite you are looking for
+      description: >
+        Returns the name of a campsite
+      operationId: getName
+      tags:
+        - campsites
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campsite_name:
+                    type: string
+                    description: Campsites name.
+                    example: C01
+  '/campsites/type ':
+    get:
+      summary: Fetch a campsites type.
+      parameters:
+        - in: query
+          name: campsite_id
+          schema:
+            type: integer
+          required: true
+          description: The specific campsite you are looking for
+      description: >
+        Returns the type of a campsite
+      operationId: getType
+      tags:
+        - campsites
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campsite_type:
+                    type: string
+                    description: Campsites type.
+                    example: WALK TO
+                  type_of_use:
+                    type: string
+                    description: Campsites type of use
+                    example: Overnight
+  /accessible_campsites:
+    get:
+      summary: Fetch a list of accessible campsites.
+      description: |
+        Returns a list of accessible campsites.
+      operationId: getAccessibleCampsites
+      tags:
+        - accessible_campsites
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campsite_id:
+                    type: string
+                    description: The ID of the campsite.
+                    example: 12616
+                  
+# components:
+#   schemas:
+#     Business:
+#       description: >
+#         An object representing information about a single business.
+#       type: object
+#       properties:
+#         ownerid:
+#           type: integer
+#           description: >
+#             The ID of the user who owns this business.  This is required when creating or updating a business.
+#           example: 16
+#         name:
+#           type: string
+#           description: Name of the business.
+#           example: American Dream Pizza
+#         address:
+#           type: string
+#           description: Street address of the business.
+#           example: 2525 NW Monroe Ave.
+#         city:
+#           type: string
+#           description: The city in which the business resides.
+#           example: Corvallis
+#         state:
+#           type: string
+#           description: The state in which the business resides.
+#           example: OR
+#         zip:
+#           type: string
+#           description: The zip code of the city in which the business resides.
+#           example: '97330'
+#         phone:
+#           type: string
+#           description: The business' phone number.
+#           example: '541-757-1713'
+#         category:
+#           type: string
+#           description: The business' category.
+#           example: 'Restaurant'
+#         subcategory:
+#           type: string
+#           description: The business' subcategory.
+#           example: 'Pizza'
+#         website:
+#           type: string
+#           description: The business' website URL.
+#           example: 'http://adpizza.com'
+#         email:
+#           type: string
+#           description: The business' email address.
+#           example: 'brian@adpizza.com'
+#         reviews:
+#           type: array
+#           description: >
+#             An array of reviews of the business.  These are only returned when fetching detailed information about a business.
+#           items:
+#             $ref: '#/components/schemas/Review'
+#         photos:
+#           type: array
+#           description: >
+#             An array of photos of the business.  These are only returned when fetching detailed information about a business.
+#           items:
+#             $ref: '#/components/schemas/Photo'
+#       required:
+#         - ownerid
+#         - name
+#         - address
+#         - city
+#         - state
+#         - zip
+#         - phone
+#         - category
+#         - subcategory
+
+#     Photo:
+#       description: >
+#         An object representing information about a photo of a business.
+#       type: object
+#       properties:
+#         userid:
+#           type: integer
+#           description: >
+#             The ID of the user associated with this photo.  This is required when creating or updating a photo.
+#           example: 7
+#         businessid:
+#           type: integer
+#           description: >
+#             The ID of the business associated with this photo.  This is required when creating or updating a photo.
+#           example: 3
+#         caption:
+#           type: string
+#           description: Caption text for the photo
+#           example: "Kale!"
+#       required:
+#         - userid
+#         - businessid
+
+#     Review:
+#       description: >
+#         An object representing information about a review of a business.
+#       type: object
+#       properties:
+#         userid:
+#           type: integer
+#           description: >
+#             The ID of the user associated with this review.  This is required when creating or updating a review.
+#           example: 7
+#         businessid:
+#           type: integer
+#           description: >
+#             The ID of the business associated with this review.  This is required when creating or updating a review.
+#           example: 3
+#         dollars:
+#           type: integer
+#           description: A rating of the expensiveness of a business.  Must be an integer between 1 and 4.
+#           example: 3
+#           minimum: 1
+#           maximum: 4
+#         stars:
+#           type: number
+#           description: A rating of the quality of a business.  Must be an number between 0 and 5.
+#           example: 5
+#           minimum: 0
+#           maximum: 5
+#         review:
+#           type: string
+#           description: Textual business review.
+#           example: "Great produce!"
+#       required:
+#         - userid
+#         - businessid
+#         - dollars
+#         - stars
+
+#     Error:
+#       description: >
+#         An object representing an error response from the API.
+#       type: object
+#       properties:
+#         error:
+#           type: string
+#           description: A message describing the error.
+tags:
+  - name: campsites
+    description: >
+      API endpoints related to campsites.
+  - name: accessible_campsites 
+    description: >
+      API endpoints related to accessible campsites.
+  # - name: reviews
+  #   description: >
+  #     API endpoints related to review resources.
+  # - name: users
+  #   description: >
+  #     API endpoints related to user resources.
