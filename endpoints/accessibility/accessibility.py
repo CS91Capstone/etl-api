@@ -1,5 +1,4 @@
 import os
-import json
 import pymysql
 
 # https://stackify.com/aws-lambda-with-python-a-complete-getting-started-guide/
@@ -53,7 +52,6 @@ def lambda_handler(event, context):
     campsite_id: str = event['campsite_id']
     query_result: dict = query_mysql(campsite_id)
     transformed_result: list = transform(records=query_result)
-    # TODO implement
     return {
         'statusCode': 200,
         'body': transformed_result,
