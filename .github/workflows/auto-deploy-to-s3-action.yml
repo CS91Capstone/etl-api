@@ -1,0 +1,31 @@
+name: auto-deploy-to-s3-action
+on:
+  push:
+    paths:
+      - endpoints/**
+jobs:
+  Explore-Github-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "The whole github context - ${{ github }} "
+      - run: echo "This job was triggered by ${{ github.actor }}"
+      - run: echo "This is github token ${{ github.token }}"
+      - run: echo "This is github repository ${{ github.repository }}"
+      - run: echo "This is github repositoryUrl ${{ github.repositoryUrl }}"
+      - run: git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
+# uses: gagoar/invoke-aws-lambda@master
+# with:
+#   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#   FunctionName: gitHubToS3
+#   Payload: '{
+#     "username": ${{  }},
+#     "token": ${{  }},
+#     "repo_name": ${{  }},
+#     "lambda_folder": ${{   }},
+#     "repo_path": ${{   }},
+#     "bucket_name": ${{   }},
+#     "bucket_key": ${{   }},
+#     "bucket_body": ${{   }}
+#   }'
+
