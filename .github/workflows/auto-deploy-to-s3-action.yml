@@ -7,7 +7,7 @@ jobs:
   Explore-Github-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "The whole github context - ${{ github }} "
+      - uses: actions/checkout@v3
       - run: echo "This job was triggered by ${{ github.actor }}"
       - run: echo "This is github token ${{ github.token }}"
       - run: echo "This is github repository ${{ github.repository }}"
