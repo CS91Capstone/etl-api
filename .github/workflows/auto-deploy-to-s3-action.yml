@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -oP '(?<=\/)(.*?)(?=\/)'
+      - run: echo "$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
       - name: Set env
         run: echo "Lambda_Folder=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -oP '(?<=\/)(.*?)(?=\/)')" >> $GITHUB_ENV
       - run: echo "This job was triggered by ${{ github.actor }}"
