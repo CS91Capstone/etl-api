@@ -8,11 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - env:
+          Lambda_Folder: ${git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | sed -E 's/.*\/(.*?)\/.*/\1/'}
       - run: echo "This job was triggered by ${{ github.actor }}"
       - run: echo "This is github token ${{ github.token }}"
       - run: echo "This is github repository ${{ github.repository }}"
       - run: echo "This is github repositoryUrl ${{ github.repositoryUrl }}"
-      - run: git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
+      - run: echo "Changed folder - $Lambda_Folder"
 # uses: gagoar/invoke-aws-lambda@master
 # with:
 #   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
