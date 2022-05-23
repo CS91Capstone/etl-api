@@ -1,6 +1,5 @@
 import os
 import json
-import pymysql
 
 # https://stackify.com/aws-lambda-with-python-a-complete-getting-started-guide/
 # https://docs.aws.amazon.com/lambda/latest/dg/python-image.html
