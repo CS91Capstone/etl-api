@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | sed -E 's/.*\/(.*?)\/.*/\\1/'
+      - run: git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -oP '(?<=\/)(.*?)(?=\/)'
       - name: Set env
-        run: echo "Lambda_Folder=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | sed -E 's/.*\/(.*?)\/.*/\\1/')" >> $GITHUB_ENV
+        run: echo "Lambda_Folder=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -oP '(?<=\/)(.*?)(?=\/)')" >> $GITHUB_ENV
       - run: echo "This job was triggered by ${{ github.actor }}"
       - run: echo "This is github token ${{ github.token }}"
       - run: echo "This is github repository ${{ github.repository }}"
