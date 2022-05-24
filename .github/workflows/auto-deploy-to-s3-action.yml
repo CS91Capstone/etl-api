@@ -22,6 +22,7 @@ jobs:
         with:
           AWS_ACCESS_KEY_ID: "AKIA52D4SI66E3AVD5OV"
           AWS_SECRET_ACCESS_KEY: "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"
+          REGION: 'us-west-2'
           FunctionName: gitHubToS3
           Payload: '{
             "username": "${{ github.actor }}",
