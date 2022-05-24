@@ -13,6 +13,7 @@ jobs:
       - name: Set env
         run: echo "Lambda_Folder=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -oP '(?<=\/)(.*?)(?=\/)')" >> $GITHUB_ENV
       - name: Call lambda function
+        id: githubtos3
         uses: gagoar/invoke-aws-lambda@master
         with:
           AWS_ACCESS_KEY_ID: "AKIA52D4SI66E3AVD5OV"
@@ -30,4 +31,4 @@ jobs:
             "bucket_body": "${{ env.Lambda_Folder }}.zip"
           }'
       - name: Store response payload to file
-        run: echo '${{ fromJSON(steps.foobar.outputs.response).Payload }}' > invocation-response.json
+        run: echo '${{ fromJSON(steps.githubtos3.outputs.response).Payload }}' > invocation-response.json
