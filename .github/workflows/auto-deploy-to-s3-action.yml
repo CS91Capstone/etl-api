@@ -24,8 +24,8 @@ jobs:
           AWS_SECRET_ACCESS_KEY: "KCGoWjHEsLbHnyCcGWdoFPT0tsdgHxi+n4ab65y6"
           FunctionName: gitHubToS3
           Payload: '{
-            "username": ${{ github.actor }},
-            "token": ${{ github.token }},
+            "username": "${{ github.actor }}",
+            "token": "${{ github.token }}",
             "repo_name": "etl-api",
             "lambda_folder": $Lambda_Folder,
             "repo_path": ${{ github.repositoryUrl }},
