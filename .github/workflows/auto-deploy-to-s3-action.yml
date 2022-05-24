@@ -13,24 +13,24 @@ jobs:
       - run: echo "$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
       - name: Set env
         run: echo "Lambda_Folder=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -oP '(?<=\/)(.*?)(?=\/)')" >> $GITHUB_ENV
-      - run: echo "This job was triggered by ${{ github.actor }}"
-      - run: echo "This is github token ${{ github.token }}"
-      - run: echo "This is github repository ${{ github.repository }}"
+      - run: echo "Username - ${{ github.actor }}"
+      - run: echo "bucket_key - api/development/${{ env.Lambda_Folder }}.zip"
+      - run: echo "bucket_body - ${{ env.Lambda_Folder }}.zip"
       - run: echo "This is github repositoryUrl ${{ github.repositoryUrl }}"
       - run: echo "Changed folder - $Lambda_Folder"
-# uses: gagoar/invoke-aws-lambda@master
-# with:
-#   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#   FunctionName: gitHubToS3
-#   Payload: '{
-#     "username": ${{  }},
-#     "token": ${{  }},
-#     "repo_name": ${{  }},
-#     "lambda_folder": ${{   }},
-#     "repo_path": ${{   }},
-#     "bucket_name": ${{   }},
-#     "bucket_key": ${{   }},
-#     "bucket_body": ${{   }}
-#   }'
+        uses: gagoar/invoke-aws-lambda@master
+        with:
+          AWS_ACCESS_KEY_ID: "AKIA52D4SI66E3AVD5OV"
+          AWS_SECRET_ACCESS_KEY: "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"
+          FunctionName: gitHubToS3
+          Payload: '{
+            "username": ${{ github.actor }},
+            "token": ${{ github.token }},
+            "repo_name": "etl-api",
+            "lambda_folder": $Lambda_Folder,
+            "repo_path": ${{ github.repositoryUrl }},
+            "bucket_name": "d3-capstone-bucket",
+            "bucket_key": "api/development/${{ env.Lambda_Folder }}.zip",
+            "bucket_body": "${{ env.Lambda_Folder }}.zip"
+          }'
 
