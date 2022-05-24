@@ -16,7 +16,7 @@ jobs:
       - run: echo "Username - ${{ github.actor }}"
       - run: echo "bucket_key - api/development/${{ env.Lambda_Folder }}.zip"
       - run: echo "bucket_body - ${{ env.Lambda_Folder }}.zip"
-      - run: echo "This is github repositoryUrl ${{ github.repositoryUrl }}"
+      - run: echo "This is github repositoryUrl ${{ github.server_url }}/${{ github.repository }}"
       - run: echo "Changed folder - $Lambda_Folder"
       - uses: gagoar/invoke-aws-lambda@master
         with:
@@ -29,7 +29,7 @@ jobs:
             "token": "${{ github.token }}",
             "repo_name": "etl-api",
             "lambda_folder": "${{ env.Lambda_Folder }}",
-            "repo_path": "${{ github.repositoryUrl }}",
+            "repo_path": "${{ github.server_url }}/${{ github.repository }}",
             "bucket_name": "d3-capstone-bucket",
             "bucket_key": "api/development/${{ env.Lambda_Folder }}.zip",
             "bucket_body": "${{ env.Lambda_Folder }}.zip"
