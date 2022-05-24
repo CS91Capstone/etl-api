@@ -27,8 +27,8 @@ jobs:
             "username": "${{ github.actor }}",
             "token": "${{ github.token }}",
             "repo_name": "etl-api",
-            "lambda_folder": ${{ env.Lambda_Folder }},
-            "repo_path": ${{ github.repositoryUrl }},
+            "lambda_folder": "${{ env.Lambda_Folder }}",
+            "repo_path": "${{ github.repositoryUrl }}",
             "bucket_name": "d3-capstone-bucket",
             "bucket_key": "api/development/${{ env.Lambda_Folder }}.zip",
             "bucket_body": "${{ env.Lambda_Folder }}.zip"
