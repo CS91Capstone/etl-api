@@ -18,7 +18,7 @@ jobs:
       - run: echo "bucket_body - ${{ env.Lambda_Folder }}.zip"
       - run: echo "This is github repositoryUrl ${{ github.repositoryUrl }}"
       - run: echo "Changed folder - $Lambda_Folder"
-        uses: gagoar/invoke-aws-lambda@master
+      - uses: gagoar/invoke-aws-lambda@master
         with:
           AWS_ACCESS_KEY_ID: "AKIA52D4SI66E3AVD5OV"
           AWS_SECRET_ACCESS_KEY: "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"
