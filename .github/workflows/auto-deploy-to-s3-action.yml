@@ -10,15 +10,10 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
-      - run: echo "$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})"
       - name: Set env
         run: echo "Lambda_Folder=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -oP '(?<=\/)(.*?)(?=\/)')" >> $GITHUB_ENV
-      - run: echo "Username - ${{ github.actor }}"
-      - run: echo "bucket_key - api/development/${{ env.Lambda_Folder }}.zip"
-      - run: echo "bucket_body - ${{ env.Lambda_Folder }}.zip"
-      - run: echo "This is github repositoryUrl ${{ github.server_url }}/${{ github.repository }}"
-      - run: echo "Changed folder - $Lambda_Folder"
-      - uses: gagoar/invoke-aws-lambda@master
+      - name: Call lambda function
+        uses: gagoar/invoke-aws-lambda@master
         with:
           AWS_ACCESS_KEY_ID: "AKIA52D4SI66E3AVD5OV"
           AWS_SECRET_ACCESS_KEY: "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"
@@ -34,4 +29,5 @@ jobs:
             "bucket_key": "api/development/${{ env.Lambda_Folder }}.zip",
             "bucket_body": "${{ env.Lambda_Folder }}.zip"
           }'
-
+      - name: Store response payload to file
+        run: echo '${{ fromJSON(steps.foobar.outputs.response).Payload }}' > invocation-response.json
