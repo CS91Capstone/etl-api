@@ -13,3 +13,6 @@ You can import the file openapi.yaml into [swagger.io](https://editor.swagger.io
 
 ### Postman
 In the postman folder we have a collection that you can use/test our endpoints.
+
+### Github Actions
+AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY should be provided in Github Secret. Whenever file pushed into `/endpoints` folder, Github Actions will be triggered and a Lambda function that pull code from Github to S3 will be called.
