@@ -1,0 +1,43 @@
+{
+	"info": {
+		"_postman_id": "95fea9ae-43c6-405b-bb3a-0de1434fb579",
+		"name": "Capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET - CAMPSITES",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Api-Key",
+						"value": "{{APIKEY}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://{{HOST}}/{{RESOURCE}}/campsites",
+					"protocol": "https",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"{{RESOURCE}}",
+						"campsites"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
